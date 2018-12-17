@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EmployeeListContainer } from './EmployeeList';
 
 class EmployeeListPage extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class EmployeeListPage extends Component {
 
   render() {
     return (
-      <div>Haha</div>
+      <div className="row studio-goal-page-wrapper">
+        <EmployeeListContainer />
+      </div>
     )
   };
 }

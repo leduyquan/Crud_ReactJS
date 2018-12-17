@@ -1,2 +1,2 @@
-# ReactCrud
-This is the basic project for the construction of React projects
+# react-webpack-skeleton
+React Webpack skeleton configuration

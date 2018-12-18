@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/copy_assets.js && webpack --config webpack.config.prod.js",
+    "build": "webpack --config webpack.config.js",
     "start": "node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^2.0.1",

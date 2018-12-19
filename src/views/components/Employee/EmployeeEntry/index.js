@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import './styles.scss';
 
-class EmployeeList extends Component {
+class EmployeeEntry extends Component {
   constructor(props) {
     super(props);
     this.onSaveClickHandler = this.onSaveClickHandler.bind(this);
@@ -32,23 +32,22 @@ class EmployeeList extends Component {
       {
         eventName: 'fs',
         startDatetime: 'fd',
-        endDatetime:'fdsjh',
-        description:'fsakjfsda',
+        endDatetime: 'fdsjh',
+        description: 'fsakjfsda',
         inactiveDate: 'ewrewre'
       },
       {
         eventName: 'werw',
         startDatetime: 'fsa',
-        endDatetime:'oiuoui',
-        description:'gfhfs',
+        endDatetime: 'oiuoui',
+        description: 'gfhfs',
         inactiveDate: 'eqweqw'
       },
     ]
-    const { handleSubmit } = this.props;
+    const { onSaveClickHandler } = this.props;
     return (
-      <div className="row event-page-wrapper">
       <div className="col col-xs-12 col-sm-4">
-        <form className="event-page-leftpane" onSubmit={handleSubmit(this.onSaveClickHandler)}>
+        <form className="event-page-leftpane" onSubmit={onSaveClickHandler}>
           <div className="event-new">
             <div className="event-new-title">CREATE NEW EVENT</div>
             <div className="row new-name">
@@ -146,46 +145,8 @@ class EmployeeList extends Component {
           </div>
         </form>
       </div>
-      <div className="col col-xs-12 col-sm-8">
-        <div className="event-page-rightpane">
-          <div className="page-title">
-            <span className="title-script event-page-title">Events</span>
-          </div>
-          <div className="row event-table">
-            <table className="table-hover table-striped">
-              <thead>
-                <tr role="row">
-                  <th className="event-th">Name</th>
-                  <th className="event-th">Start Date</th>
-                  <th className="event-th">End Date</th>
-                  <th className="event-th">Description</th>
-                  <th className="event-th">Inactive Date</th>
-                  <th className="event-th">Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-               {sortedEvent.map((item, index) => (
-                <tr key={index}>
-                  <td className="event-td">{item.eventName}</td>
-                  <td className="event-td">{item.startDatetime}</td>
-                  <td className="event-td">{item.endDatetime}</td>
-                  <td className="event-td">{item.description}</td>
-                  <td className="event-td">{item.inactiveDate}</td>
-                  <td className="event-td"><span className="fa fa-pencil icon" ></span></td>
-                </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      </div>
     )
   }
 };
 
-const eventEntry = reduxForm({
-  form: 'evententry'
-})(EmployeeList);
-
-export default eventEntry;
+export default EmployeeEntry;

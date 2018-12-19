@@ -10,18 +10,16 @@ class EmployeeList extends Component {
   render() {
     const sortedEvent = [
       {
-        eventName: 'fs',
-        startDatetime: 'fd',
-        endDatetime: 'fdsjh',
-        description: 'fsakjfsda',
-        inactiveDate: 'ewrewre'
+        name: 'fs',
+        address: 'fd',
+        position: 'fdsjh',
+        salary: 'fsakjfsda'
       },
       {
-        eventName: 'werw',
-        startDatetime: 'fsa',
-        endDatetime: 'oiuoui',
-        description: 'gfhfs',
-        inactiveDate: 'eqweqw'
+        name: 'fs',
+        address: 'fd',
+        position: 'fdsjh',
+        salary: 'fsakjfsda'
       },
     ]
     return (
@@ -35,21 +33,19 @@ class EmployeeList extends Component {
               <thead>
                 <tr role="row">
                   <th className="event-th">Name</th>
-                  <th className="event-th">Start Date</th>
-                  <th className="event-th">End Date</th>
-                  <th className="event-th">Description</th>
-                  <th className="event-th">Inactive Date</th>
+                  <th className="event-th">Address</th>
+                  <th className="event-th">Position</th>
+                  <th className="event-th">Salary</th>
                   <th className="event-th">Edit</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedEvent.map((item, index) => (
                   <tr key={index}>
-                    <td className="event-td">{item.eventName}</td>
-                    <td className="event-td">{item.startDatetime}</td>
-                    <td className="event-td">{item.endDatetime}</td>
-                    <td className="event-td">{item.description}</td>
-                    <td className="event-td">{item.inactiveDate}</td>
+                    <td className="event-td">{item.name}</td>
+                    <td className="event-td">{item.address}</td>
+                    <td className="event-td">{item.position}</td>
+                    <td className="event-td">{item.salary}</td>
                     <td className="event-td"><span className="fa fa-pencil icon" ></span></td>
                   </tr>
                 ))}

@@ -16,6 +16,12 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/",
   },
+  resolve: { 
+    //modules: ['node_modules'],
+    //Automatically resolve certain extensions. 
+    //Ex: import SomeFile from './somefile.ext'
+    extensions: ['.js', '.jsx', '.css', '.scss', '.json']
+  },
   module: {
     loaders: [
       {
@@ -33,7 +39,8 @@ module.exports = {
             {
               loader: 'sass-loader'
             }
-          ]
+          ],
+          fallback: "style-loader"
         })
       },
     ]

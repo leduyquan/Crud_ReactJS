@@ -8,7 +8,7 @@ class EmployeeListPage extends Component {
 
   render() {
     return (
-      <div className="row studio-goal-page-wrapper">
+      <div className="row event-page-wrapper">
         <EmployeeListContainer />
       </div>
     )

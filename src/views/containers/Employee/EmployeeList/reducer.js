@@ -17,15 +17,16 @@ const employeeListReducer = (state = initialState, action) => {
       };
     case FETCH_EMPLOYEE_LIST_SUCCESS:
       return {
-
+        ...state,
+        employeeData: data
       };
     case FETCH_EMPLOYEE_LIST_ERROR:
       return {
-        error,
-        employeeData: []
+        ...state,
+        error
       };
     default:
-      return 'df';
+      return state;
   }
 };
 

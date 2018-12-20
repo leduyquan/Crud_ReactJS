@@ -8,20 +8,8 @@ class EmployeeList extends Component {
   }
 
   render() {
-    const sortedEvent = [
-      {
-        name: 'fs',
-        address: 'fd',
-        position: 'fdsjh',
-        salary: 'fsakjfsda'
-      },
-      {
-        name: 'fs',
-        address: 'fd',
-        position: 'fdsjh',
-        salary: 'fsakjfsda'
-      },
-    ]
+    const { employeeList } = this.props;
+    
     return (
       <div className="col col-xs-12 col-sm-8">
         <div className="event-page-rightpane">
@@ -40,7 +28,7 @@ class EmployeeList extends Component {
                 </tr>
               </thead>
               <tbody>
-                {sortedEvent.map((item, index) => (
+                {employeeList.map((item, index) => (
                   <tr key={index}>
                     <td className="event-td">{item.name}</td>
                     <td className="event-td">{item.address}</td>

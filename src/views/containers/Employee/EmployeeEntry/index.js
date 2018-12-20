@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 
 import EmployeeEntry from '../../../components/Employee/EmployeeEntry';
+import { fetchEmployeeListStart } from '../EmployeeList/actions';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
 class EmployeeEntryContainer extends Component {
-
   constructor(props) {
     super(props);
     this.onSaveClickHandler = this.onSaveClickHandler.bind(this);
+  }
+
+  componentDidMount(){
+    const { fetchEmployeeListStart} = this.props;
+    fetchEmployeeListStart();
   }
 
   onSaveClickHandler(values) {
@@ -33,7 +38,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchEmployeeListStart: () => dispatch(fetchEmployeeListStart())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(employeeEntry);
-
+export default connect(null, mapDispatchToProps)(employeeEntry);

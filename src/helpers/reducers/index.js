@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import employeeListReducer from '../../views/containers/Employee/EmployeeList/reducer';
 
-const appReducer = combineReducers({
-  form: formReducer
+const rootReducer = combineReducers({
+  form: formReducer,
+  employeeListReducer
 });
 
-const rootReducer = () => {
-  return appReducer();
-}
+// const rootReducer = (state,action) => {
+//   return appReducer(state,action);
+// }
 
 export default rootReducer;

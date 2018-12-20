@@ -5,16 +5,16 @@ import Layout from '../Layout';
 
 const PrivateRoute = ({
   component: Component,
-  ...routerOpts
-}) =>
-  (<Route
-    {...routerOpts}
-    render={myProps => (
-      <Layout>
-        <Component {...myProps} />
-      </Layout>
-    )}
-  />
+  ...options
+}) => (
+    <Route
+      {...options}
+      render={props  => (
+        <Layout>
+          <Component {...props } />
+        </Layout>
+      )}
+    />
   );
 
 PrivateRoute.propTypes = {

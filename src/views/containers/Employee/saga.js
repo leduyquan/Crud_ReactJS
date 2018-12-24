@@ -1,5 +1,11 @@
-import { takeEvery, put } from 'redux-saga/effects';
+import EmployeeService from '../../../services/employee.service';
 import { isEmpty } from 'lodash';
+import { takeEvery, put, call } from 'redux-saga/effects';
+/**
+ * put: dispatch a action
+ * call: call a function
+ * select: call a selector function to get data from store (reducer)
+ */
 
 import {
   fetchEmployeeListStart,
@@ -13,22 +19,11 @@ import {
 
 function* fetchEmployeeWorker() {
   try {
-    const sortedEvent = [
-      {
-        name: 'fs',
-        address: 'fd',
-        position: 'fdsjh',
-        salary: 'layyfdsa'
-      },
-      {
-        name: 'fs',
-        address: 'fd',
-        position: 'fdsjh',
-        salary: 'fsakjfsda'
-      },
-    ]
+    const { getEmployeeList } = EmployeeService;
+    const response = yield call([EmployeeService, getEmployeeList]);
+    const employeeData = response.data;
     
-    yield put(fetchEmployeeListSuccess(sortedEvent));
+    yield put(fetchEmployeeListSuccess(employeeData));
   } catch (error) {
     yield put(fetchEmployeeListError(error))
   }

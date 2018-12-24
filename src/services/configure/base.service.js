@@ -10,6 +10,10 @@ class BaseService {
   get() {
     return API.get(this.requestUrl);
   }
+
+  post(body) {
+    return API.post(this.requestUrl, body);
+  }
 }
 
 export default BaseService;

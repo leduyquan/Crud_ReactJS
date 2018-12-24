@@ -8,12 +8,34 @@ class ApiService {
 
   async get(path) {
     return this.service.get(path)
-    .then(response => {
-      return response;
-    }).catch(error => {
-      console.log(error);
-    });
+      .then(response => {
+        return response;
+      }).catch(error => {
+        console.log(error);
+      });
   }
+
+  async post(path, body) {
+    return this.service.post(path, body)
+      .then(response => {
+        return response;
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+
+  // async post(path, body) {
+  //   return this.service.request({
+  //     method: 'POST',
+  //     url: path,
+  //     data: body,
+  //     responseType: 'json'
+  //   }).then(response => {
+  //     return response;
+  //   }).catch(error => {
+  //     console.log(error);
+  //   });
+  // }
 }
 
 //To create a instance

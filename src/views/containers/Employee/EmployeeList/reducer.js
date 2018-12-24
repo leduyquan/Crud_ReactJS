@@ -1,7 +1,8 @@
 import {
   FETCH_EMPLOYEE_LIST_START,
   FETCH_EMPLOYEE_LIST_SUCCESS,
-  FETCH_EMPLOYEE_LIST_ERROR
+  FETCH_EMPLOYEE_LIST_ERROR,
+  RESET_STATE_EMPLOYEE_LIST
 } from './constants';
 
 const initialState = {
@@ -23,8 +24,14 @@ const employeeListReducer = (state = initialState, action) => {
     case FETCH_EMPLOYEE_LIST_ERROR:
       return {
         ...state,
+        employeeData: [],
         error
       };
+    case RESET_STATE_EMPLOYEE_LIST:
+      return {
+        ...state,
+        employeeData: []
+      }
     default:
       return state;
   }

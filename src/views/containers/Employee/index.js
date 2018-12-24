@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EmployeeEntryContainer from './EmployeeEntry'
-import { EmployeeListContainer } from './EmployeeList';
+import EmployeeListContainer from './EmployeeList';
 
 class EmployeePage extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class EmployeePage extends Component {
 
   render() {
     return (
-      <div className="row event-page-wrapper">
+      <div className="row employee-page-wrapper">
         <EmployeeEntryContainer />
         <EmployeeListContainer />
       </div>

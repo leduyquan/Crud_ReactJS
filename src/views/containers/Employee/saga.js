@@ -8,10 +8,18 @@ import { takeEvery, put, call } from 'redux-saga/effects';
  */
 
 import {
-  fetchEmployeeListStart,
+createEmployeeSuccess,
+createEmployeeError
+} from './EmployeeEntry/actions';
+
+import {
   fetchEmployeeListSuccess,
   fetchEmployeeListError
 } from './EmployeeList/actions';
+
+import {
+ CREATE_EMPLOYEE_START
+} from './EmployeeEntry/constants';
 
 import {
  FETCH_EMPLOYEE_LIST_START
@@ -29,8 +37,24 @@ function* fetchEmployeeWorker() {
   }
 }
 
+function* createEmployeeWorker(action) {
+  try {
+    const { createEmployee } = EmployeeService;
+
+    const body = {
+      ...action.inputData
+    }
+
+    yield call([EmployeeService, createEmployee], body);
+    yield put(createEmployeeSuccess());
+  } catch (error) {
+    yield put(fetchEmployeeListError(error))
+  }
+}
+
 const employeeWatchers = [
-  takeEvery(FETCH_EMPLOYEE_LIST_START, fetchEmployeeWorker)
+  takeEvery(FETCH_EMPLOYEE_LIST_START, fetchEmployeeWorker),
+  takeEvery(CREATE_EMPLOYEE_START, createEmployeeWorker)
 ];
 
 export default employeeWatchers;

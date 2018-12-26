@@ -6,6 +6,7 @@ import {
 } from './constants';
 
 const initialState = {
+  loadingTable: false,
   employeeData: []
 };
 
@@ -14,22 +15,26 @@ const employeeListReducer = (state = initialState, action) => {
   switch (type) {
     case FETCH_EMPLOYEE_LIST_START:
       return {
-        ...state
+        ...state,
+        loadingTable: true
       };
     case FETCH_EMPLOYEE_LIST_SUCCESS:
       return {
         ...state,
+        loadingTable: false,
         employeeData: data
       };
     case FETCH_EMPLOYEE_LIST_ERROR:
       return {
         ...state,
         employeeData: [],
+        loadingTable: false,
         error
       };
     case RESET_STATE_EMPLOYEE_LIST:
       return {
         ...state,
+        loadingTable: false,
         employeeData: []
       }
     default:

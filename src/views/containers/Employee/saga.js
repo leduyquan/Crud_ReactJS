@@ -13,6 +13,7 @@ createEmployeeError
 } from './EmployeeEntry/actions';
 
 import {
+  fetchEmployeeListStart,
   fetchEmployeeListSuccess,
   fetchEmployeeListError
 } from './EmployeeList/actions';
@@ -47,6 +48,7 @@ function* createEmployeeWorker(action) {
 
     yield call([EmployeeService, createEmployee], body);
     yield put(createEmployeeSuccess());
+    yield put(fetchEmployeeListStart());
   } catch (error) {
     yield put(fetchEmployeeListError(error))
   }

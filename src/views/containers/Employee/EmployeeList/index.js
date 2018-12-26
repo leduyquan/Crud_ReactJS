@@ -23,17 +23,19 @@ class EmployeeListContainer extends Component {
   }
 
   render() {
-    const { employeeList } = this.props;
+    const { employeeList, isLoading } = this.props;
     return (
       <EmployeeList
         employeeList={employeeList}
+        isLoading={isLoading}
       />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  employeeList: state.employeeListReducer.employeeData
+  employeeList: state.employeeListReducer.employeeData,
+  isLoading: state.employeeListReducer.loadingTable
 });
 
 const mapDispatchToProps = dispatch => ({

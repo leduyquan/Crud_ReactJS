@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Spinner from '../../../../common/Spinner';
 import { Field, reduxForm } from 'redux-form';
-import './styles.scss';
+import './styles';
 
 class EmployeeList extends Component {
   constructor(props) {
@@ -8,8 +9,8 @@ class EmployeeList extends Component {
   }
 
   render() {
-    const { employeeList } = this.props;
-    
+    const { employeeList, isLoading } = this.props;
+
     return (
       <div className="col col-xs-12 col-sm-8">
         <div className="employee-page-rightpane">
@@ -28,15 +29,17 @@ class EmployeeList extends Component {
                 </tr>
               </thead>
               <tbody>
-                {employeeList.map((item, index) => (
-                  <tr key={index}>
-                    <td className="employee-td">{item.name}</td>
-                    <td className="employee-td">{item.address}</td>
-                    <td className="employee-td">{item.position}</td>
-                    <td className="employee-td">{item.salary}</td>
-                    <td className="employee-td"><span className="fa fa-pencil icon" ></span></td>
-                  </tr>
-                ))}
+                {(isLoading) ? <Spinner /> : (
+                  employeeList.map((item, index) => (
+                    <tr key={index}>
+                      <td className="employee-td">{item.name}</td>
+                      <td className="employee-td">{item.address}</td>
+                      <td className="employee-td">{item.position}</td>
+                      <td className="employee-td">{item.salary}</td>
+                      <td className="employee-td"><span className="fa fa-pencil icon" ></span></td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

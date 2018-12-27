@@ -13,7 +13,8 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
     publicPath: "/",
   },
   resolve: { 
@@ -57,7 +58,41 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'styles.css',
       allChunks: true,
-  })
+    }),
+
+    //For minify bundle file
+    //Must declare in .babelrc
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: true,
+      exclude: [/\.min\.js$/gi]
+    }),
+
+    //split the code (bundle) smaller 
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      },
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'react',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && context.indexOf('node_modules\/react') >= 0;
+      },
+    }),
   ],
   devServer: {
     contentBase: './public',

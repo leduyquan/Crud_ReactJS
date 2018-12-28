@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '../views/components/Wrapper';
+import Wrapper from '../common/Wrapper';
 import PrivateRoute from '../common/PrivateRoute';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import EmployeePage from '../views/containers/Employee';

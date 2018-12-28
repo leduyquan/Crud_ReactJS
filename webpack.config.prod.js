@@ -1,34 +1,43 @@
+const path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: __dirname + "/src/index.js",
   output: {
-    path: __dirname + "/build",
-    filename: "bundle.js",
-    publicPath: "./",
+    path: path.resolve(__dirname, "dist"),
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
+    publicPath: "/",
+  },
+  resolve: { 
+    extensions: ['.js', '.jsx', '.css', '.scss', '.json']
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react'],
-          plugins: ['react-hot-loader/babel']
-        }
+        loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        test: /\.s?css$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ],
+          fallback: "style-loader"
+        })
       },
       {
-        exclude: [/\.html$/, /\.(js|jsx)$/, /\.css$/, /\.json$/],
+        exclude: [/\.html$/, /\.(js|jsx)$/, /\.css$/,  /\.scss$/, /\.json$/],
         loader: 'file-loader',
         options: {
           name: 'static/media/[name].[ext]'
@@ -58,15 +67,37 @@ module.exports = {
         minifyURLs: true,
       }
     }),
+    new ExtractTextPlugin({
+      filename: 'styles.css',
+      allChunks: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        reduce_vars: false
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
       },
       output: {
-        comments: false,
+        comments: false
       },
-      sourceMap: true
+      sourceMap: true,
+      exclude: [/\.min\.js$/gi]
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'react',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && context.indexOf('node_modules\/react') >= 0;
+      },
     }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json'

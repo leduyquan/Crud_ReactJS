@@ -49,11 +49,13 @@ module.exports = {
   plugins: [
     //Automatically reload whenever there are any changes from the files
     new webpack.HotModuleReplacementPlugin(),
+
     //It will create a html file and load all your bundles (dist folder)
     new HtmlWebpackPlugin({
       inject: true,
       template: __dirname + '/public/index.html'
     }),
+
     //It moves all the required *.css modules in entry chunks into a separate CSS file (dist folder). Display on DOM
     new ExtractTextPlugin({
       filename: 'styles.css',
@@ -77,7 +79,7 @@ module.exports = {
       exclude: [/\.min\.js$/gi]
     }),
 
-    //split the code (bundle) smaller 
+    //Split the code (bundle) smaller 
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks(module, count) {

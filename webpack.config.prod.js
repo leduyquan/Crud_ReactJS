@@ -7,7 +7,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: __dirname + "/src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
     publicPath: "/",
@@ -70,6 +70,14 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'styles.css',
       allChunks: true,
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+      canPrint: true
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -36,6 +37,7 @@ module.exports = {
           use: [
             {
               loader: 'css-loader'
+
             },
             {
               loader: 'sass-loader'
@@ -60,6 +62,16 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'styles.css',
       allChunks: true,
+    }),
+    
+    //Optimize \ minimize CSS assets.
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+      canPrint: true
     }),
 
     //For minify bundle file

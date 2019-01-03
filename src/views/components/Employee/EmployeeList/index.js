@@ -18,19 +18,19 @@ class EmployeeList extends Component {
             <span className="title-script employee-page-title">employees</span>
           </div>
           <div className="row employee-table">
-            <table className="table-hover table-striped">
-              <thead>
-                <tr role="row">
-                  <th className="employee-th">Name</th>
-                  <th className="employee-th">Address</th>
-                  <th className="employee-th">Position</th>
-                  <th className="employee-th">Salary</th>
-                  <th className="employee-th">Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(isLoading) ? <Spinner /> : (
-                  employeeList.map((item, index) => (
+            {(isLoading) ? <Spinner /> : (
+              <table className="table-hover table-striped">
+                <thead>
+                  <tr role="row">
+                    <th className="employee-th">Name</th>
+                    <th className="employee-th">Address</th>
+                    <th className="employee-th">Position</th>
+                    <th className="employee-th">Salary</th>
+                    <th className="employee-th">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {employeeList.map((item, index) => (
                     <tr key={index}>
                       <td className="employee-td">{item.name}</td>
                       <td className="employee-td">{item.address}</td>
@@ -38,10 +38,10 @@ class EmployeeList extends Component {
                       <td className="employee-td">{item.salary}</td>
                       <td className="employee-td"><span className="fa fa-pencil icon" ></span></td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>

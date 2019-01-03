@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "start": "node_modules/.bin/webpack-dev-server"
+    "build": "webpack -p --config webpack.config.prod.js",
+    "start": "node_modules/.bin/webpack-dev-server --config ./webpack.config.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -38,7 +38,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "css-loader": "^2.0.1",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-css-chunks-webpack-plugin": "^2.0.18",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.11.0",
     "npx": "^10.2.0",

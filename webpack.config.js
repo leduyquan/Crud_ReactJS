@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
@@ -33,17 +33,15 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
+        use: ExtractCssChunks.extract({
           use: [
             {
               loader: 'css-loader'
-
             },
             {
               loader: 'sass-loader'
             }
-          ],
-          fallback: "style-loader"
+          ]
         })
       },
     ]
@@ -58,10 +56,9 @@ module.exports = {
       template: __dirname + '/public/index.html'
     }),
 
-    //It moves all the required *.css modules in entry chunks into a separate CSS file (dist folder). Display on DOM
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      allChunks: true,
+    //It moves all the required *.css modules based on CommonsChunkPlugin. Display on DOM
+    new ExtractCssChunks({
+      filename: '[name].css',
     }),
     
     //Optimize \ minimize CSS assets.
@@ -106,7 +103,7 @@ module.exports = {
         var context = module.context;
         return context && context.indexOf('node_modules\/react') >= 0;
       },
-    }),
+    })
   ],
   devServer: {
     contentBase: './public',

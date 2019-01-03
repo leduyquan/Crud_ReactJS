@@ -2,7 +2,7 @@ const path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 module.exports = {
   entry: __dirname + "/src/index.js",
@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
+        use: ExtractCssChunks.extract({
           use: [
             {
               loader: 'css-loader'
@@ -32,8 +32,7 @@ module.exports = {
             {
               loader: 'sass-loader'
             }
-          ],
-          fallback: "style-loader"
+          ]
         })
       },
       {
@@ -53,45 +52,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: __dirname + '/public/index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      }
+      template: __dirname + '/public/index.html'
     }),
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      allChunks: true,
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        screw_ie8: true
-      },
-      output: {
-        comments: false
-      },
-      sourceMap: true,
-      exclude: [/\.min\.js$/gi]
+    new ExtractCssChunks({
+      filename: '[name].css',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

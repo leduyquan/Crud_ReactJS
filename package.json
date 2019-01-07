@@ -25,6 +25,7 @@
     "react-loader-spinner": "^2.3.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
+    "react-s-alert": "^1.4.1",
     "recompose": "^0.30.0",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",

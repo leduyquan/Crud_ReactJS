@@ -1,4 +1,5 @@
 import EmployeeService from '../../../services/employee.service';
+import { alertActions } from '../../../common/Alerts/actions';
 import { isEmpty } from 'lodash';
 import { takeEvery, put, call } from 'redux-saga/effects';
 /**
@@ -48,9 +49,11 @@ function* createEmployeeWorker(action) {
 
     yield call([EmployeeService, createEmployee], body);
     yield put(createEmployeeSuccess());
+    yield put(alertActions.showSuccess());
     yield put(fetchEmployeeListStart());
   } catch (error) {
     yield put(fetchEmployeeListError(error))
+    yield put(alertActions.showError(error));
   }
 }
 

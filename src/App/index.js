@@ -3,6 +3,7 @@ import Wrapper from '../common/Wrapper';
 import PrivateRoute from '../common/PrivateRoute';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import EmployeePage from '../views/containers/Employee';
+import AlertRedux from '../common/Alerts';
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
     return (
       <Wrapper>
         {routes}
+        <AlertRedux />
       </Wrapper>
     )
   }

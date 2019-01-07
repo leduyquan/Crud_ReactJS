@@ -11,6 +11,7 @@
     "stage-3"
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "transform-class-properties"
   ]
 }

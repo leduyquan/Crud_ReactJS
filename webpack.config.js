@@ -19,6 +19,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: { 
+    //Tell webpack what directories should be searched when resolving modules
     //modules: ['node_modules'],
     //Automatically resolve certain extensions. 
     //Ex: import SomeFile from './somefile.ext'
@@ -62,31 +63,31 @@ module.exports = {
     }),
     
     //Optimize \ minimize CSS assets.
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
-    }),
+    // new OptimizeCssAssetsPlugin({
+    //   assetNameRegExp: /\.css$/g,
+    //   cssProcessor: require('cssnano'),
+    //   cssProcessorPluginOptions: {
+    //     preset: ['default', { discardComments: { removeAll: true } }],
+    //   },
+    //   canPrint: true
+    // }),
 
     //For minify bundle file
     //Must declare in .babelrc
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false, // Suppress uglification warnings
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        screw_ie8: true
-      },
-      output: {
-        comments: false
-      },
-      sourceMap: true,
-      exclude: [/\.min\.js$/gi]
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false, // Suppress uglification warnings
+    //     pure_getters: true,
+    //     unsafe: true,
+    //     unsafe_comps: true,
+    //     screw_ie8: true
+    //   },
+    //   output: {
+    //     comments: false
+    //   },
+    //   sourceMap: true,
+    //   exclude: [/\.min\.js$/gi]
+    // }),
 
     //Split the code (bundle) smaller 
     new webpack.optimize.CommonsChunkPlugin({

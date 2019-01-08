@@ -7,7 +7,7 @@ import AlertRedux from '../common/Alerts';
 
 class App extends React.Component {
   render() {
-    const routeEm = (
+    const routesComponent = (
       <Wrapper>
         <PrivateRoute
           path="/dashboard"
@@ -16,16 +16,16 @@ class App extends React.Component {
       </Wrapper>
     );
 
-    const routes = (
+    const routesApp = (
       <Switch>
         <Route exact path="/" render={() => (<h2> HomePage </h2>)} />
-        {routeEm}
+        {routesComponent}
       </Switch>
     )
 
     return (
       <Wrapper>
-        {routes}
+        {routesApp}
         <AlertRedux />
       </Wrapper>
     )

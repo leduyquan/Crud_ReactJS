@@ -18,7 +18,7 @@ module.exports = {
     chunkFilename: '[name].chunk.js',
     publicPath: "/",
   },
-  resolve: { 
+  resolve: {
     //Tell webpack what directories should be searched when resolving modules
     //modules: ['node_modules'],
     //Automatically resolve certain extensions. 
@@ -45,6 +45,15 @@ module.exports = {
           ]
         })
       },
+      //loader for font-awesome
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=500&minetype=application/font-woff&name=assets/fonts/[name].[ext]'
+      },
+      {
+        test: /\.(ttf|eot|svg|otf|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=500&name=assets/fonts/[name].[ext]'
+      }
     ]
   },
   plugins: [

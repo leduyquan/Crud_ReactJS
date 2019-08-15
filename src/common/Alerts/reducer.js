@@ -14,13 +14,14 @@ import {
   CloseAll 
 } from './types';
 
-const defaultState = {
+const initialState = {
     message: null,
     alertType: null,
 };
 
-const AlertReducer = (state = defaultState, action) => {
+const AlertReducer = (state = initialState, action) => {
     const { type, message } = action;
+    console.log('buoc 2 cap nhat reducer')
     switch (type) {
         case SHOW_SUCCESS: {
             return {

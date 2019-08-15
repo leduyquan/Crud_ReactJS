@@ -51,7 +51,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createEmployee: (inputData) => dispatch(createEmployeeStart(inputData)),
+  createEmployee: inputData => dispatch(createEmployeeStart(inputData)),
   resetStateEmployeeEntry: () => dispatch(resetStateEmployeeEntry())
 });
 

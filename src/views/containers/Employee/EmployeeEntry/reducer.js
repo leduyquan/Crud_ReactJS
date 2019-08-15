@@ -10,12 +10,12 @@ const initialState = {
 };
 
 const createEmployeeReducer = (state = initialState, action) => {
-  const { type, error } = action;
+  const { type, error, inputData } = action;
   switch (type) {
     case CREATE_EMPLOYEE_START:
       return {
         ...state,
-        inputData: action.inputData
+        inputData
       }
     case CREATE_EMPLOYEE_SUCCESS:
       return {
@@ -35,4 +35,6 @@ const createEmployeeReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
+
+export default createEmployeeReducer;

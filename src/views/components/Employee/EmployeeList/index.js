@@ -9,7 +9,7 @@ class EmployeeList extends Component {
   }
 
   render() {
-    const { employeeList, isLoading } = this.props;
+    const { employeeList, isLoading, onEdit } = this.props;
 
     return (
       <div className="col col-xs-12 col-sm-8">
@@ -36,7 +36,7 @@ class EmployeeList extends Component {
                       <td className="employee-td">{item.address}</td>
                       <td className="employee-td">{item.position}</td>
                       <td className="employee-td">{item.salary}</td>
-                      <td className="employee-td"><span className="fa fa-pencil icon" ></span></td>
+                      <td className="employee-td"><span className="fa fa-pencil icon" onClick={() => onEdit(item._id)}></span></td>
                     </tr>
                   ))}
                 </tbody>

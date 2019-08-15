@@ -3,7 +3,8 @@ import Wrapper from '../common/Wrapper';
 import PrivateRoute from '../common/PrivateRoute';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import EmployeePage from '../views/containers/Employee';
-import AlertRedux from '../common/Alerts';
+import Alert  from '../common/Alerts';
+import Modal from '../common/Modal';
 
 class App extends React.Component {
   render() {
@@ -22,11 +23,13 @@ class App extends React.Component {
         {routesComponent}
       </Switch>
     )
-
+   
     return (
+      
       <Wrapper>
         {routesApp}
-        <AlertRedux />
+        <Alert />
+        <Modal />
       </Wrapper>
     )
   }

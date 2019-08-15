@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import EmployeeList from '../../../components/Employee/EmployeeList';
+import EmployeeEditContainer from '../EmployeeEdit';
+import { modalActions } from '../../../../common/Modal/actions';
 import { connect } from 'react-redux';
 import {
   fetchEmployeeListStart,
@@ -15,6 +17,7 @@ class EmployeeListContainer extends Component {
   componentDidMount() {
     const { fetchEmployeeList } = this.props;
     fetchEmployeeList();
+    console.log('goi actione list')
   }
 
   componentWillUnmount() {
@@ -23,11 +26,12 @@ class EmployeeListContainer extends Component {
   }
 
   render() {
-    const { employeeList, isLoading } = this.props;
+    const { employeeList, isLoading, onEdit } = this.props;
     return (
       <EmployeeList
         employeeList={employeeList}
         isLoading={isLoading}
+        onEdit={onEdit}
       />
     );
   }
@@ -39,6 +43,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onEdit: employeeId => dispatch(modalActions.showModal({
+    size: 'lg',
+    headerClass: 'hide-header',
+    component: EmployeeEditContainer,
+    className: 'edit-modal-form',
+    props: {
+      employeeId
+    }
+  })),
   fetchEmployeeList: () => dispatch(fetchEmployeeListStart()),
   resetStateEmployeeList: () => dispatch(resetStateEmployeeList())
 });

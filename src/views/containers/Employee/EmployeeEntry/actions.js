@@ -14,7 +14,7 @@ export const createEmployeeSuccess = () => ({
   type: CREATE_EMPLOYEE_SUCCESS
 });
 
-export const createEmployeeError = (error) => ({
+export const createEmployeeError = error => ({
   type: CREATE_EMPLOYEE_ERROR,
   error
 });

@@ -27,7 +27,6 @@ const employeeListReducer = (state = initialState, action) => {
     case FETCH_EMPLOYEE_LIST_ERROR:
       return {
         ...state,
-        employeeData: [],
         loadingTable: false,
         error
       };

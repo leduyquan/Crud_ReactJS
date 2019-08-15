@@ -103,3 +103,14 @@
       }
   }  
 }
+
+
+.edit-modal-form {
+    width: 578px !important; // min-width: 950px;
+    .modal-content {
+        border-radius: 12px;
+        .modal-body {
+            padding: 0;
+        }
+    }
+}
